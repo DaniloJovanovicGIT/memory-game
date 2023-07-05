@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Memory Game">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+  <!-- Font type 'Atkinson Hyperlegible'  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@700&display=swap" rel="stylesheet">
+  <link href="./assets/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/fontawesome-free-6.1.2-web/css/all.min.css">
+  <link rel="stylesheet" href="./styles/congratulation.css">
+  <link rel="stylesheet" href="./styles/main.css">
+  <!-- End font  type  -->
+  <title>Frontend Mentor | Memory game</title>
+</head>
+<body >
+
+  <main >
+    <!-- Start Game Menu -->
+  
+      <div class="startGame" >
+    
+          <h1 class="gameTitle">
+            memory
+          </h1>
+          <div class="startGameContainer">
+            <div class="themeMenu">
+              <h2>
+                Select Theme
+              </h2>
+              <div class="buttonsContainer">
+                <button class="active">
+                  Numbers
+                </button>
+                <button class="idle">
+                  Icons
+                </button>
+              </div>
+            </div>
+    
+            <div class="playersNumbers">
+                <h2>
+                  Numbers of Players
+                </h2>
+                <div class="buttonsContainer">
+                  <button class="active">
+                      1
+                  </button>
+                  <button class="idle">
+                      2
+                  </button>
+                  <button class="idle">
+                      3
+                  </button>
+                  <button class="idle">
+                      4
+                  </button>
+                </div>
+            </div>
+    
+            <div class="gridSize">
+                <h2>
+                  Grid Size
+                </h2>
+                <div class="buttonsContainer">
+                  <button class="active">
+                    4x4
+                  </button>
+                  <button class="idle">
+                    6x6
+                  </button>
+                </div>
+            </div>
+           
+            <div class="submitDashboard">
+              <button class="primary">
+                Start Game
+              </button>
+            </div>
+          </div>
+    
+      </div>
+    
+      <!-- Strat Game Menu-->
+      
+  
+      <!-- Game Board -->
+        <div class="gameBoard d-none ">
+          <div class="gameBoardHeader">
+              <div class="logo">
+                  memory
+              </div>
+              <div class="gameOptions">
+                  <button class="primary restart">
+                    Restart
+                  </button>
+                  <button class="secondary newGame">
+                    New Game
+                  </button>
+                  <button class="primary" type="button">
+                    Menu
+                  </button>
+              </div>
+          </div>
+          <div class="gridContainer">
+            <!-- replace grid-6x6 with grid-4x4 -->
+            <!-- <div class="choice selected"><span>32</span></div>
+            <div class="choice solved"><i class="fa-solid fa-anchor"></i></div> -->
+    
+          </div>
+          <div class="gameScore">
+              <div class="solo t-50 d-45"> 
+                <!-- replace multi with solo -->
+                    <div class="time">
+                      <!-- replace player1 with time -->
+                      <p>
+                        
+                      </p>
+                      <p >
+                          <span class="minutes">0</span>
+                          <span class="colon">:</span>
+                          <span class="seconds">00</span>
+                          <span class="">0</span>
+                      </p>
+                    </div>
+                    <div class="moves">
+                      <!-- replace player2 with moves -->
+                        <p>
+                     
+                        </p>
+                        <p >
+                            0
+                        </p>
+                    </div>
+                    <div class="player3 d-none ">
+                      <!-- display none in solo -->
+                      <p>
+                   
+                      </p>
+                      <p >
+                          0
+                      </p>
+                  </div>
+                  <div class="player4 d-none ">
+                    <!-- display none in solo -->
+                    <p>
+                 
+                    </p>
+                    <p >
+                        0
+                    </p>
+                </div>
+      
+              </div>
+          </div>
+    
+        </div>
+        
+      <!-- Game Board -->
+
+  </main>
+
+  
+    
+
+  <!-- Modals -->
+
+  <div class="modal fade" id="menuList" data-bs-backdrop="static" data-bs-keyboard="false" >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button type="button" class="primary active restart">Restart</button>
+          <button type="button" class="secondary newGame"  >New Game</button>
+          <button type="button" class="secondary">Resume Game</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="gameStatus" data-bs-backdrop="static" data-bs-keyboard="false" >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h3 class="winMessage">
+            You did it!
+          </h3>
+          <p>
+            Game over! Here’s how you got on…
+          </p>
+          <div class="playerScores">
+              <div class="scoreDetails d-none">
+                  <div>
+                    <span>Time Elapsed</span><span></span>
+                  </div>
+                  <div>
+                    <span class="score d-none">8</span>
+                    <span>1:53</span>
+                  </div>
+              </div>
+              <div class="scoreDetails d-none">
+                <div>
+                  <span>Moves Taken</span><span></span>
+                </div>
+                <div>
+                  <span class="score d-none">8</span>
+                  <span>39 Moves</span>
+                </div>
+              </div>
+              <div class="scoreDetails d-none" >
+                <div>
+                  <span>Player 1</span><span></span>
+                </div>
+                <div>
+                  <span class="score">3</span>
+                  <span>Pairs</span>
+                </div>
+              </div>
+              <div class="scoreDetails d-none">
+                <div>
+                  <span>Player 2</span><span></span>
+                </div>
+                <div>
+                  <span class="score">2</span>
+                  <span>Pairs</span>
+                </div>
+              </div>
+              <div class="scoreDetails d-none" >
+                <div>
+                  <span>Player 3</span><span></span>
+                </div>
+                <div>
+                  <span class="score">3</span>
+                  <span>Pairs</span>
+                </div>
+              </div>
+              <div class="scoreDetails d-none">
+                <div>
+                  <span>Player 4</span><span></span>
+                </div>
+                <div>
+                  <span class="score">2</span>
+                  <span>Pairs</span>
+                </div>
+              </div>
+          </div>
+          <div class="buttonContainer">
+            <button type="button" class="primary active restart" >Restart</button>
+            <button type="button" class="secondary newGame">Setup New Game</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  
+<script src="./assets/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
+<script src="main.js"  type="module" ></script>
+
+</body>
+</html>
