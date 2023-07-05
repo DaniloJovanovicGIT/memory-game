@@ -1,0 +1,93 @@
+@use "./_designVariables" as *;
+@use "./_startGame";
+@use "./gameBoard";
+@use "./modals";
+h1,h2,h3,p{
+    margin: 0px;
+}
+%centerElements{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body{
+    $startGame:true;  // to change color of body
+    @extend %centerElements;
+    @if($startGame){
+        background-color: $startGameBackground ;
+    }@else{
+        background-color:  $gameBoardBackground;
+    }
+    height: 100vh;
+ 
+    margin: 0px;
+    font-family: $fontFamily;
+}
+main{
+    width: 100%;
+    margin: 0 24px;
+    max-width: 654px;
+    &.gameBoardMain{
+        max-width: 1110px;
+        margin: 24px;
+        height: inherit;
+    }
+}
+
+button{
+    outline: none;
+    border: none;
+    border-radius: 26px;
+    font-family: inherit;
+    color:unset;
+    cursor: pointer;
+    width: 100%;
+    user-select: none;
+    &.active{
+        cursor: unset;
+     
+    }
+}
+.modal{
+    user-select: none;
+    .modal-content{
+        border: unset;
+    }
+    .modal-dialog{
+     
+            margin: 0 24px;
+            @media(min-width:575px){
+                margin:1.75rem auto ;
+            }
+    }
+    .modal-body{
+        padding: 24px;
+        border-radius: 10px;
+        background-color: $modalBackgroundColor;
+        button{
+            padding: 14px;
+            &.primary{
+                background-color: $buttonPrimaryIdle;
+                color: $gameBoardBackground;
+                @media(min-width:$desktop){
+
+                    &:hover{
+                        background-color: $buttonPrimaryHover;
+                    }
+                }
+            }
+            &.secondary{
+                background-color: $buttonSecondaryColor;
+                color: $menuActive;
+                @media(min-width:$desktop){
+                    &:hover{
+                        background-color: $buttonSecondaryHover;
+                        color:$gameBoardBackground;
+                    }
+
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,349 @@
+@use "./_designVariables" as *;
+
+$dimensions:4,6; // grid dimension
+
+// mixin to control grid system and theme
+@mixin gridSystem() {
+    @each $dimension in $dimensions{
+        .grid-#{$dimension}x#{$dimension}{
+            display: grid;
+            width: 100%;
+            margin: 0 auto;
+            grid-template-columns: repeat($dimension,1fr);
+            gap: 10px;
+            .choice{
+                user-select: none;
+                width: 100%;
+                border-radius: 50%;
+                background-color: $menuActive;
+                position: relative;
+                display: flex;
+                color:$gameBoardBackground;
+                justify-content: center;
+                cursor: pointer;
+                padding-bottom: 100%;
+            
+                i,span{
+                    font-size:24px;
+                    position: absolute;
+                    line-height: 100%;
+                    top:calc(50% - 12px);
+                    @media(min-width:$tablet){
+                        font-size: 32px;
+                        top: calc(50% - 16px);
+                    }
+                    @media(min-width:$desktop){
+                        font-size: 40px;
+                        top: calc(50% - 20px);
+                    }
+                    
+           
+                }
+    
+                @media(min-width:$desktop){
+                    
+                    &:hover{
+                        background-color: $menuHover;
+                    }
+                }
+
+                &.selected{
+                   background-color:$buttonPrimaryIdle;
+                   pointer-events: none;
+                }
+                &.solved{
+                    background-color:$menuIdle;
+                    pointer-events: none;
+                }
+    
+            }
+            @media(min-width:$mobileL){
+                width: $mobileL - 48px;
+                +.gameScore{
+                    width:$mobileL - 48px;
+                }
+            }
+            @media(min-width:$tablet){
+                width: unset;
+                @if $dimension==6{
+                    gap: 16px;
+                    grid-template-columns: repeat($dimension,82px);
+                }@else{
+                    grid-template-columns: repeat($dimension,118px);
+                    gap: 20px;
+                }
+                +.gameScore{
+                    width:100%;
+                }
+            }
+            @media(min-width:$desktop){
+                grid-template-columns: repeat($dimension,1fr);
+                width: 45%;
+            }
+        }
+        
+    }
+}  
+// -----------------------------------------
+// generate classes for all players and content of these blocks
+@mixin players(){
+    @for $i from 1 through 4{
+        .player#{$i}{
+            p:first-child::before{
+                content: "P#{$i}";
+                @media(min-width:$tablet){
+                    content: "player #{$i}";
+                }
+            }
+        }
+    }
+}
+//  --------------------------
+// mixin to adjust triangle
+@mixin triangle($width,$color){
+    position: relative;
+    &::before{
+        content:"";
+        position: absolute;
+        left: calc(50% - $width);
+        top:calc($width * -2);
+        width: 0;
+        height: 0;
+        border: $width solid transparent;
+        border-bottom-color: $color;
+    }
+}
+.gameBoard{
+    $media:"mobile";
+    $playingMode:"solo";
+    // max-width: 1110px;
+    height: calc(100% - 48px);
+    // width: 100%;
+    margin:24px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    @media(min-width:$tablet){
+        align-self: center;
+     
+    }
+    display: flex;
+    flex-direction: column;
+
+    @include gridSystem();
+ 
+    
+    .gameBoardHeader{
+        display: flex;
+        width: 100%;
+    
+        justify-content: space-between;
+        align-items: center;
+  
+        .gameOptions{
+            button{
+                width: unset;
+            }
+            button:nth-child(1){
+                padding: 14px 28px;
+                margin-right: 16px;
+            }
+            button:nth-child(2){
+                padding: 14px 24px;
+            }
+            button:nth-child(1),button:nth-child(2){
+                font-size: 20px;
+                display: none;
+            }
+            button:nth-child(3){
+                display: inline;
+                padding: 10px 18.5px;
+            }
+            .primary{
+                color: $gameBoardBackground;
+                background-color:$buttonPrimaryIdle;
+                @media(min-width:$desktop){
+
+                    &:hover{
+                        background-color:$buttonPrimaryHover;
+                    }
+                }
+            }
+            .secondary{
+                color:$menuActive;
+                background-color:$buttonSecondaryColor;
+                @media(min-width:$desktop){
+                    &:hover{
+                        background-color:$buttonSecondaryHover;
+                        color:$gameBoardBackground;
+                    }
+
+                }
+            }
+            @media(min-width:$tablet){
+                button:nth-child(1), button:nth-child(2){
+                    display: inline;
+                }
+                button:nth-child(3){
+                    display: none;
+                }
+            }
+        }
+        .logo{
+            user-select: none;
+            @media(min-width:$tablet){
+                font-size: 40px;
+            }
+            font-size: 24px;
+        }
+    
+
+    }
+
+
+    .gameScore{
+        width: 100%;
+        > div{
+            display: flex;
+            gap: 15px;
+            justify-content: space-around;
+            width:100%;
+            margin: 0 auto;
+           div{
+                text-align: center;
+                padding: 10px 0px;
+                border-radius: 5px;
+                // flex-grow: 1;
+                width:inherit;
+                background-color:$buttonSecondaryColor ;
+                user-select: none;
+                p:first-child{
+                    font-size: 15px;
+                    color:$menuTitleColor;
+              
+                }
+                p:last-child{
+                    font-size: 24px;
+                    color:$menuActive;
+                }
+
+            }
+
+            @media(min-width:$tablet){
+                &.multi div{
+                    align-items: flex-start;
+                }
+                gap: 25px;
+
+                
+               // define based on  number of players
+
+                & div{
+                    display: flex;
+                    // flex-grow: 1;
+                    width:inherit;
+                    padding: 10px 16px;
+                    align-items: center;
+                    justify-content: space-between;
+                    p:first-child{
+                        font-size: 18px;
+                        
+                    }
+                    p:last-child{
+                        font-size: 32px;
+                  
+                    }
+               
+                }
+                &.multi div{
+                    flex-direction: column;
+                    text-align: start;
+                }
+            }
+
+            @media(min-width:$desktop){
+                &.multi div{
+                    align-items: center;
+                }
+                &.multi div{
+                    flex-direction: unset;
+                    text-align: unset;
+                }
+
+                
+            }
+        }
+        > .solo{
+            .time{
+                p:first-child::before{
+                    content: "Time";
+                }
+                span:last-child{
+                    display: none;
+                }
+            }
+            .moves {
+                p:first-child::before{
+                    content: "Moves";
+                }
+            }
+        }
+        > .multi{
+            .player1{
+                span:not(:last-child){
+                    display: none;
+                }
+                span:last-child{
+                    display: inline;
+                }
+            }
+            .turn{
+                background-color:$buttonPrimaryIdle;
+                *{
+                    color:$gameBoardBackground;
+                }
+                 @include  triangle(10px,$buttonPrimaryIdle);
+            }
+            @include players();
+        }
+    }
+
+    .grid-4x4{
+        &+.gameScore{
+            @media(min-width:$tablet){
+                .t-50{
+                    width:532px;
+                }
+
+                .t-100{
+                    width:100%;
+                }
+            }
+            @media(min-width:$desktop){
+                .d-45{
+                    width: 45%;
+                }
+            }
+          
+        }
+    }
+    .grid-6x6{
+        &+.gameScore{
+            @media(min-width:$tablet){
+                .t-50{
+                    width:572px;
+                }
+                .t-100{
+                    width:100%;
+                }
+            }
+            @media(min-width:$desktop){
+                .d-45{
+                    width: 45%;
+                }
+            }
+          
+        }
+    }
+
+}

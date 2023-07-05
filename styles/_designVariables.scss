@@ -1,0 +1,50 @@
+// colors (8)
+
+    // background colors 
+
+    $startGameBackground:#152938;
+    $gameBoardBackground:#FCFCFC;
+
+    //Menu selection colors 
+
+    $menuActive:#304859;
+    $menuHover:#6395B8;
+    $menuIdle:#BCCED9;
+    $menuTitleColor:#7191A5;
+    //buttons primary colors
+
+    $buttonPrimaryIdle:#FDA214;
+    $buttonPrimaryHover:#FFB84A;
+
+    //buttons secondary colors
+
+    $buttonSecondaryColor:#DFE7EC;
+    $buttonSecondaryHover:$menuHover;
+
+    // modal backgroundColor
+    $modalBackgroundColor:#F2F2F2;
+
+// -----------------------------------------
+
+// fonts (1)
+
+    // font family
+
+        $fontFamily:'Atkinson Hyperlegible', sans-serif;
+
+    // font weight
+
+        $fontWeight:700;
+
+// -----------------------------------------
+  
+// media 
+
+    $mobile:375px;
+    $mobileL:425px;
+    $tablet:768px;
+    $desktop:1024px;
+    
+// ----------------------------------
+
+

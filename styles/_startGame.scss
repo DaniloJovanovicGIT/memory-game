@@ -1,0 +1,82 @@
+@use "./_designVariables" as *;
+.startGame{
+    color:  $gameBoardBackground ;
+    // width:100%;
+    // max-width:654px;
+    // margin: 0 24px;
+    user-select: none;
+
+    .gameTitle{
+        text-align: center;
+        margin-bottom: 45px;
+        @media (min-width:$tablet){
+            font-size: 40px;
+        }
+    }
+    .startGameContainer{
+        background-color: $gameBoardBackground;
+        padding: 24px;
+        border-radius: 10px;
+        .buttonsContainer{
+            display: grid;
+            font-size: 16px;
+            grid-template-columns: repeat(2,1fr);
+            gap:11px;
+            button{
+                padding: 11px 0px;
+                font-size: 16px;
+                @media(min-width:$tablet){
+                    font-size: 26px;
+                }
+                &.active{
+                    background-color: $menuActive;
+                }
+                &.idle{
+                    @media(min-width:$desktop){
+                        &:hover{
+                            background-color: $menuHover;
+                        }
+
+                    }
+                    background-color:$menuIdle;
+                }
+                
+            }
+        }
+        .playersNumbers{
+            .buttonsContainer{
+                grid-template-columns: repeat(4,1fr);
+                gap: 10px;
+            }
+        }
+        h2{
+            color: $menuTitleColor;
+            font-size: 15px;
+            @media(min-width:$tablet){
+                font-size: 20px;
+            }
+            margin-bottom: 11px;
+        }
+        div:not(:last-child){
+                margin-bottom: 24px;
+        }
+        div:last-child{
+            button.primary{
+                background-color: $buttonPrimaryIdle;
+                @media(min-width:$desktop){
+
+                    &:hover{
+                        background-color: $buttonPrimaryHover;
+                    }
+                }
+                padding: 14px 0px;
+                font-size: 18px;
+                @media(min-width:$tablet){
+                    font-size: 32px;
+                }
+            }
+        }
+
+    }
+
+}
