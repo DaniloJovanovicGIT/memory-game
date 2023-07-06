@@ -66,6 +66,7 @@ const soloModeHTMLTags = `
 </p>
 </div>
 `;
+
 let dashboardSelections = { "theme": "numbers", "playerNumbers": 1, "gridSize": 4 };
 let selectedPairs = [];
 let movesToSloveGame = 0;
@@ -108,6 +109,7 @@ submitDashboard.addEventListener("click", () => {
         ele.addEventListener("click", () => {
             if ((!ele.classList.toString().includes("selected")) && (!ele.classList.toString().includes("solved"))) {
                 ele.classList.add("selected");
+
                 selectedPairs.push(ele);
                 ele.children[0].classList.remove("d-none");
                 // console.log(selectedPairs)
@@ -540,5 +542,11 @@ function newGame() {
     gameBoard.classList.add("d-none");
     dashboardMenu.classList.remove("d-none");
 }
+
 // setRandomPositions(dashboardSelections);
 //# sourceMappingURL=main.js.map
+// import soundDecide from "./assets/sound/decide.mp3";
+// function playSound(){
+//     new Audio(soundDecide).play();
+// } 
+// playSound();
