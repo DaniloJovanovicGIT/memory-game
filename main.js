@@ -19,7 +19,7 @@ const gameIcons = {
     "type": "fa-solid",
     "icons": [
         "fa-anchor", "fa-bug", "fa-flask", "fa-futbol", "fa-hand-spock",
-        "fa-turkish-lira-sign", "fa-moon", "fa-snowflake", "fa-sun", "fa-car"
+        "fa-wine-bottle", "fa-moon", "fa-snowflake", "fa-sun", "fa-car"
     ]
 };
 const restartButtons = document.querySelectorAll(".restart");
